@@ -16,7 +16,7 @@ import async from '../src/async.js'
 // the default is 5 seconds, which is way too long for our needs
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1500
 
-describe('parallel', function () {
+xdescribe('parallel', function () {
   it('should call the functions without waiting until the previous function completes. Once tasks have completed, results are passed to the final callback as an array ', function (done) {
     const testArr = []
 
@@ -39,7 +39,7 @@ describe('parallel', function () {
       // the results array will equal ['one','two'] even though
       // the second function had a shorter timeout.
       expect(results).toEqual(['one', 'two'])
-
+      
       // however, our testArr should have had 'two' pushed to it first
       expect(testArr).toEqual(['two', 'one'])
       done()
@@ -76,7 +76,7 @@ describe('parallel', function () {
 // To enable them, change "xdescribe" to "describe". Just delete the "x" character.
 // This is how you disable/enable tests in Jasmine.
 
-xdescribe('map', function () {
+describe('map', function () {
   // We will just do the array version of async.map, even though the actual async library also allows an object to be passed to async.map
 
   it('should produce a new collection of values by mapping each value in collection through the iteratee function', function (done) {
