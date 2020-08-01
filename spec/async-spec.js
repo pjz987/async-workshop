@@ -76,7 +76,7 @@ xdescribe('parallel', function () {
 // To enable them, change "xdescribe" to "describe". Just delete the "x" character.
 // This is how you disable/enable tests in Jasmine.
 
-describe('map', function () {
+xdescribe('map', function () {
   // We will just do the array version of async.map, even though the actual async library also allows an object to be passed to async.map
 
   it('should produce a new collection of values by mapping each value in collection through the iteratee function', function (done) {
@@ -108,6 +108,7 @@ describe('map', function () {
     }
 
     async.map([1, 2, 'not a number', 4], asyncSquareWithErrorHandling, function (err, results) {
+      console.log(err.message)
       expect(err).toBeInstanceOf(Error)
       expect(err.message).toEqual('value "not a number" is not a number')
       done()
@@ -117,7 +118,7 @@ describe('map', function () {
 
 // delete the "x" to enable this test.
 
-xdescribe('waterfall', function () {
+describe('waterfall', function () {
   it('should call the functions in sequence, passing the result to the next function', function (done) {
     const testArr = []
 
