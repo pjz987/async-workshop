@@ -42,7 +42,7 @@ function map(collection, iteratee, callback) {
       if (counter === collection.length) {
         callback(err, results)
       }
-    }) 
+    })
   }
 }
 // console.log(tasks?)
@@ -65,7 +65,18 @@ function map(collection, iteratee, callback) {
 // }
 
 function waterfall(tasks, callback) {
-  console.log(tasks, callback)
+  let next
+  let counter = 0
+  function doTask(task) {
+    task((err, ...params) => {
+      console.log(err)
+      console.log(params)
+    })
+    // doTask(...params)
+  }
+  while (counter < tasks.length) {
+
+  }
 }
 
 export default {
