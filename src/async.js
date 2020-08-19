@@ -65,18 +65,23 @@ function map(collection, iteratee, callback) {
 // }
 
 function waterfall(tasks, callback) {
-  let next
   let counter = 0
-  function doTask(task) {
-    task((err, ...params) => {
-      console.log(err)
-      console.log(params)
+  function doTask(index, ...args) {
+    console.log(tasks[index])
+    tasks[index](...args, (err, ...results) => {
+      if (err) {
+        console.log(err)
+        callback(err, ...results)
+      }
+      counter++
+      if (counter === tasks.length) {
+        callback(err, ...results)
+      } else if (counter <= tasks.length && !err) {
+        doTask(counter, ...results)
+      }
     })
-    // doTask(...params)
   }
-  while (counter < tasks.length) {
-
-  }
+  doTask(counter)
 }
 
 export default {

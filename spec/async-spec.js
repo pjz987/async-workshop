@@ -16,7 +16,7 @@ import async from '../src/async.js'
 // the default is 5 seconds, which is way too long for our needs
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1500
 
-xdescribe('parallel', function () {
+describe('parallel', function () {
   it('should call the functions without waiting until the previous function completes. Once tasks have completed, results are passed to the final callback as an array ', function (done) {
     const testArr = []
 
@@ -76,7 +76,7 @@ xdescribe('parallel', function () {
 // To enable them, change "xdescribe" to "describe". Just delete the "x" character.
 // This is how you disable/enable tests in Jasmine.
 
-xdescribe('map', function () {
+describe('map', function () {
   // We will just do the array version of async.map, even though the actual async library also allows an object to be passed to async.map
 
   it('should produce a new collection of values by mapping each value in collection through the iteratee function', function (done) {
@@ -108,6 +108,7 @@ xdescribe('map', function () {
     }
 
     async.map([1, 2, 'not a number', 4], asyncSquareWithErrorHandling, function (err, results) {
+      console.log(err)
       console.log(err.message)
       expect(err).toBeInstanceOf(Error)
       expect(err.message).toEqual('value "not a number" is not a number')
